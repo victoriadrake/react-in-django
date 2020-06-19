@@ -1,0 +1,20 @@
+name: Django Security Check
+
+on: push
+
+env:
+  FAIL_LEVEL: ERROR
+  ENV_TYPE: pipenv
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out master
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Scan Django settings for security issues
+        uses: victoriadrake/django-security-check@master
