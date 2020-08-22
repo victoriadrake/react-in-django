@@ -34,3 +34,7 @@ pipenv run python manage.py runserver
 ```
 
 Build out this starting point into an app that actually does stuff!
+
+## Bonus: Django Security Check
+
+The [Django Security Check GitHub Action](https://github.com/victoriadrake/django-security-check) can help you automatically check for security misconfigurations in your production Django application. See the [`security-check.yml` workflow file](https://github.com/victoriadrake/react-in-django/blob/add-django-security-check/.github/workflows/security-check.yml) for an example.
