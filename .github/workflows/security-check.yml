@@ -19,7 +19,8 @@ jobs:
       - name: Scan Django settings for security issues
         id: check
         uses: victoriadrake/django-security-check@master
-      - run: echo "::set-output name=result::$(cat output.txt)"
+      - id: results
+        run: echo "::set-output name=file::$(cat output.txt)"
       - name: Comment with output
         uses: actions/github-script@v3
         with:
@@ -28,5 +29,5 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `${{ steps.check.outputs.result }}`
+              body: `${{ steps.results.outputs.file }}`
             })
