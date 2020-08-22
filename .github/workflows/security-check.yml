@@ -1,9 +1,9 @@
 name: Django Security Check
 
-on: push
+on: pull_request_target
 
 env:
-  FAIL_LEVEL: ERROR
+  FAIL_LEVEL: WARNING
   ENV_TYPE: pipenv
 
 jobs:
@@ -19,8 +19,18 @@ jobs:
       - name: Scan Django settings for security issues
         id: check
         uses: victoriadrake/django-security-check@master
-      - name: Upload output
-        uses: actions/upload-artifact@v2
+      - id: results
+        run: |
+          OUTPUT=$(cat output.txt)
+          FORMATTED=${OUTPUT//$'\n'/%0A}
+          echo ::set-output name=file::**Django Security Check identified issues:** %0A$FORMATTED
+      - name: Comment with output
+        uses: actions/github-script@v3
         with:
-          name: Django Security Check Output
-          path: output.txt
+          script: |
+            github.issues.createComment({
+              issue_number: ${{ github.event.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `${{ steps.results.outputs.file }}`
+            })
