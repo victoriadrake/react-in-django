@@ -22,7 +22,8 @@ jobs:
       - id: results
         run: |
           OUTPUT=$(cat output.txt)
-          echo ::set-output name=file::**Django Security Check identified issues:** %0A$OUTPUT
+          FORMATTED=${OUTPUT//\n/%0A}
+          echo ::set-output name=file::**Django Security Check identified issues:** %0A$FORMATTED
       - name: Comment with output
         uses: actions/github-script@v3
         with:
