@@ -21,7 +21,6 @@ jobs:
         uses: victoriadrake/django-security-check@master
       - run: echo "::set-output name=result::$(cat output.txt)"
       - name: Comment with output
-        if: failure()
         uses: actions/github-script@v3
         with:
           script: |
