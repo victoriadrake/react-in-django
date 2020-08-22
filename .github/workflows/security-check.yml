@@ -20,7 +20,9 @@ jobs:
         id: check
         uses: victoriadrake/django-security-check@master
       - id: results
-        run: echo "::set-output name=file::$(cat output.txt)"
+        run: |
+          OUTPUT=$(cat output.txt)
+          echo ::set-output name=file::**Django Security Check identified issues:** %0A$OUTPUT
       - name: Comment with output
         uses: actions/github-script@v3
         with:
