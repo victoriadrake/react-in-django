@@ -1,5 +1,7 @@
 # React-in-Django
 
+Hello world! 👋
+
 This is an app that doesn't do anything! Here's what it looks like:
 
 ![Screenshot](./app-js-in-django-template.png)
