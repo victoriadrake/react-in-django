@@ -20,9 +20,9 @@ jobs:
         id: check
         uses: victoriadrake/django-security-check@master
       - name: Comment with output
+        if: failure()
         uses: actions/github-script@v3
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             github.issues.createComment({
               issue_number: ${{ github.event.number }},
