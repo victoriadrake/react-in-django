@@ -19,6 +19,7 @@ jobs:
       - name: Scan Django settings for security issues
         id: check
         uses: victoriadrake/django-security-check@master
+      - run: echo "::set-output name=result::$(cat output.txt)"
       - name: Comment with output
         if: failure()
         uses: actions/github-script@v3
@@ -28,5 +29,5 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `${{ result }}`
+              body: `${{ steps.check.outputs.result }}`
             })
