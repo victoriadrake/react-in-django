@@ -6,9 +6,6 @@ env:
   FAIL_LEVEL: WARNING
   ENV_TYPE: pipenv
 
-runs:
-  using: 'node16'
-
 jobs:
   build:
 
@@ -22,7 +19,7 @@ jobs:
       - name: Install pipenv
         run: pipx install pipenv
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.9'
           cache: 'pipenv'
