@@ -6,6 +6,9 @@ env:
   FAIL_LEVEL: WARNING
   ENV_TYPE: pipenv
 
+runs:
+  using: 'node16'
+
 jobs:
   build:
 
